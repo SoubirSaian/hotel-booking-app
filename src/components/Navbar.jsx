@@ -4,8 +4,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { assets } from '@/assets/assets';
 import { useClerk, useUser } from '@clerk/nextjs';
+import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
+    const router = useRouter();
+
   const navLinks = [
       { name: 'Home', path: '/' },
       { name: 'Hotels', path: '/rooms' },
@@ -31,7 +34,7 @@ const Navbar = () => {
 
   return (
           
-          <nav className={`fixed top-0 left-0 w-full flex items-center justify-between px-4 md:px-16 lg:px-24 xl:px-32 transition-all duration-500 z-50 ${isScrolled ? "bg-white/80 shadow-md text-gray-700 backdrop-blur-lg py-3 md:py-4" : "py-4 md:py-6"}`}>
+          <nav className={`fixed top-0 left-0 w-full flex items-center justify-between px-4 md:px-16 lg:px-24 xl:px-32 transition-all duration-500 z-50 text-black ${isScrolled ? "bg-white/80 shadow-md text-gray-700 backdrop-blur-lg py-3 md:py-4" : "py-4 md:py-6"}`}>
 
               {/* Logo */}
               <Link href="/" className="flex items-center gap-2">
@@ -77,11 +80,11 @@ const Navbar = () => {
                       </Link>
                   ))}
 
-                  <button className="border px-4 py-1 text-sm font-light rounded-full cursor-pointer transition-all">
+                  <button onClick={ router.push('/admin/dashboard') } className="border px-4 py-1 text-sm font-light rounded-full cursor-pointer transition-all">
                       Dashboard
                   </button>
 
-                  <button onClick={openSignIn} className="bg-black text-white px-8 py-2.5 rounded-full transition-all duration-500">
+                  <button className="bg-black text-white px-8 py-2.5 rounded-full transition-all duration-500">
                       Login
                   </button>
               </div>
